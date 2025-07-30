@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Project Management{% endblock %}</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <div class="container">
+    {% if user.is_authenticated %}
+      <p class="text-right">Logged in as {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></p>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

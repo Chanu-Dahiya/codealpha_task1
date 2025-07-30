@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}Comments{% endblock %}
+{% block content %}
+<h2>Comments for: {{ task.title }}</h2>
+
+<ul class="list-group">
+  {% for comment in comments %}
+    <li class="list-group-item">
+      <strong>{{ comment.user.username }}</strong>: {{ comment.text }}
+      <br><small class="text-muted">{{ comment.created_at }}</small>
+    </li>
+  {% empty %}
+    <li class="list-group-item text-muted">No comments yet.</li>
+  {% endfor %}
+</ul>
+
+<hr>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button class="btn btn-primary" type="submit">Add Comment</button>
+</form>
+{% endblock %}
